@@ -12,8 +12,8 @@ export default function Calendar() {
     <div className="calendar">
       <Header />
       {schedule[0] &&
-        schedule.map((each) => {
-          return <p>{each.date}</p>;
+        schedule.map((each, index) => {
+          return <p key={index}>{each.date}</p>;
         })}
       <Week schedule={schedule} />
       <Form setSchedule={setSchedule} />
