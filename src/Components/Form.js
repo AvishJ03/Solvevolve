@@ -13,7 +13,10 @@ const Form = ({ schedule, setSchedule }) => {
       alert(JSON.stringify(values));
       let flag = false;
       schedule.forEach((element) => {
-        if (element.date === values.date && element.start === values.start) {
+        if (
+          element.date === values.date &&
+          element.start.slice(0, 2) === values.start.slice(0, 2)
+        ) {
           flag = true;
         }
       });

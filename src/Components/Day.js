@@ -3,6 +3,7 @@ import "./day.css";
 
 export default function Day({ date, schedule }) {
   var x;
+  const arr = [...Array(23).keys()];
   const hours = {
     "09:30": null,
     "10:30": null,
@@ -25,18 +26,17 @@ export default function Day({ date, schedule }) {
     events[0] &&
       events.forEach((ele) => {
         var time = ele.start;
-        if (time === "09:30") {
-          x = { "09:30": ele };
-        } else if (time === "10:30") {
-          x = { "10:30": ele };
-        } else if (time === "11:30") {
-          x = { "11:30": ele };
-        } else if (time === "12:30") {
-          x = { "12:30": ele };
-        } else if (time === "13:30") {
-          x = { "01:30": ele };
-        }
-        x[time] = ele;
+        arr.forEach((num) => {
+          if (num < 10) {
+            if (time.slice(0, 2) === `0${num}`) {
+              x = { [`0${num}:30`]: ele };
+            }
+          } else {
+            if (time.slice(0, 2) === `${num}`) {
+              x = { [`${num}:30`]: ele };
+            }
+          }
+        });
         if (!h[time]) {
           console.log("yes");
           setH((prev) => ({ ...prev, ...x }));
@@ -47,62 +47,44 @@ export default function Day({ date, schedule }) {
   }, [events, h]);
   return (
     <div>
-      <div style={{ backgroundColor: "white" }} className="hour"></div>
-      <div
-        style={
-          h["09:30"] != null
-            ? { backgroundColor: "#a6f7f1" }
-            : { backgroundColor: "white" }
+      <div style={{ backgroundColor: "white" }} className="hour border-2"></div>
+      {arr.map((ele) => {
+        if (ele < 10) {
+          return (
+            <div
+              style={
+                h[`0${ele}:30`] != null
+                  ? { backgroundColor: "#a6f7f1" }
+                  : { backgroundColor: "white" }
+              }
+              className="hour border-2"
+            >
+              <p>{h[`0${ele}:30`] && h[`0${ele}:30`].title}</p>
+              <p>
+                {h[`0${ele}:30`] &&
+                  h[`0${ele}:30`].start + " - " + h[`0${ele}:30`].end}
+              </p>
+            </div>
+          );
+        } else {
+          return (
+            <div
+              style={
+                h[`${ele}:30`] != null
+                  ? { backgroundColor: "#a6f7f1" }
+                  : { backgroundColor: "white" }
+              }
+              className="hour border-2"
+            >
+              <p>{h[`${ele}:30`] && h[`${ele}:30`].title}</p>
+              <p>
+                {h[`${ele}:30`] &&
+                  h[`${ele}:30`].start + " - " + h[`${ele}:30`].end}
+              </p>
+            </div>
+          );
         }
-        className="hour"
-      >
-        <p>{h["09:30"] && h["09:30"].title}</p>
-        <p>{h["09:30"] && h["09:30"].start + " - " + h["09:30"].end}</p>
-      </div>
-      <div
-        style={
-          h["10:30"] != null
-            ? { backgroundColor: "#dea4f5" }
-            : { backgroundColor: "white" }
-        }
-        className="hour"
-      >
-        <p>{h["10:30"] && h["10:30"].title}</p>
-        <p>{h["10:30"] && h["10:30"].start + " - " + h["10:30"].end}</p>
-      </div>
-      <div
-        style={
-          h["11:30"] != null
-            ? { backgroundColor: "#f2ceaa" }
-            : { backgroundColor: "white" }
-        }
-        className="hour"
-      >
-        <p>{h["11:30"] && h["11:30"].title}</p>
-        <p>{h["11:30"] && h["11:30"].start + " - " + h["12:30"].end}</p>
-      </div>
-      <div
-        style={
-          h["12:30"] != null
-            ? { backgroundColor: "#b4faa7" }
-            : { backgroundColor: "white" }
-        }
-        className="hour"
-      >
-        <p>{h["12:30"] && h["12:30"].title}</p>
-        <p>{h["12:30"] && h["12:30"].start + " - " + h["12:30"].end}</p>
-      </div>
-      <div
-        style={
-          h["01:30"] != null
-            ? { backgroundColor: "#a4bef5" }
-            : { backgroundColor: "white" }
-        }
-        className="hour"
-      >
-        <p>{h["01:30"] && h["01:30"].title}</p>
-        <p>{h["01:30"] && h["01:30"].start + " - " + h["01:30"].end}</p>
-      </div>
+      })}
     </div>
   );
 }
