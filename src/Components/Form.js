@@ -1,7 +1,7 @@
 import React from "react";
 import { useFormik } from "formik";
 
-const Form = ({ setSchedule }) => {
+const Form = ({ schedule, setSchedule }) => {
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -9,9 +9,20 @@ const Form = ({ setSchedule }) => {
       start: "",
       end: ""
     },
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       alert(JSON.stringify(values));
-      setSchedule((old) => [...old, values]);
+      let flag = false;
+      schedule.forEach((element) => {
+        if (element.date === values.date && element.start === values.start) {
+          flag = true;
+        }
+      });
+      if (flag) {
+        alert("Another event already exists!");
+      } else {
+        setSchedule((old) => [...old, values]);
+        resetForm();
+      }
     }
   });
   return (
