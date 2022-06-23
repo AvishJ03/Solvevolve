@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import Day from "./Day";
+import Timing from "./Timings";
 import "./week.css";
 
 export default function Week({ schedule }) {
@@ -10,7 +10,11 @@ export default function Week({ schedule }) {
   return (
     <div className="week">
       <div>
-        <h3>Sun</h3>
+        <div style={{ height: "35px" }}></div>
+        <Timing />
+      </div>
+      <div>
+        <h3 className="text-bold">Sun</h3>
         <h3>19</h3>
         <Day date="2022-06-19" schedule={schedule} />
       </div>

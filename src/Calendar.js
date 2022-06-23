@@ -7,12 +7,8 @@ export default function Calendar() {
   const def = [{ title: null, date: null, start: null, end: null }];
   const [schedule, setSchedule] = useState(def);
   return (
-    <div className="calendar">
+    <div className="w-10/12">
       <Header />
-      {schedule[1] &&
-        schedule.map((each, index) => {
-          return <p key={index}>{each.date}</p>;
-        })}
       <Week schedule={schedule} />
       <Form schedule={schedule} setSchedule={setSchedule} />
     </div>
