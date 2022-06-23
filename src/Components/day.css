@@ -5,3 +5,7 @@
   width: 100px;
   height: 100px;
 }
+
+.hour p {
+  margin: 0;
+}

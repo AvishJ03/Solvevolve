@@ -33,7 +33,7 @@ export default function Day({ date, schedule }) {
           x = { "11:30": ele };
         } else if (time === "12:30") {
           x = { "12:30": ele };
-        } else if (time === "01:30") {
+        } else if (time === "13:30") {
           x = { "01:30": ele };
         }
         x[time] = ele;
@@ -43,70 +43,65 @@ export default function Day({ date, schedule }) {
         } else {
           console.log("no");
         }
-        // console.log(ele.date.slice(8));
-
-        // alert(ele.date.sl)
       });
   }, [events, h]);
   return (
     <div>
-      <div
-        style={
-          events[0] ? { backgroundColor: "blue" } : { backgroundColor: "white" }
-        }
-        className="hour"
-      >
-        abc
-      </div>
+      <div style={{ backgroundColor: "white" }} className="hour"></div>
       <div
         style={
           h["09:30"] != null
-            ? { backgroundColor: "blue" }
+            ? { backgroundColor: "#a6f7f1" }
             : { backgroundColor: "white" }
         }
         className="hour"
       >
-        abc
+        <p>{h["09:30"] && h["09:30"].title}</p>
+        <p>{h["09:30"] && h["09:30"].start + " - " + h["09:30"].end}</p>
       </div>
       <div
         style={
           h["10:30"] != null
-            ? { backgroundColor: "blue" }
+            ? { backgroundColor: "#dea4f5" }
             : { backgroundColor: "white" }
         }
         className="hour"
       >
-        {h["10:30"] && h["10:30"].title}
+        <p>{h["10:30"] && h["10:30"].title}</p>
+        <p>{h["10:30"] && h["10:30"].start + " - " + h["10:30"].end}</p>
       </div>
       <div
         style={
           h["11:30"] != null
-            ? { backgroundColor: "blue" }
+            ? { backgroundColor: "#f2ceaa" }
             : { backgroundColor: "white" }
         }
         className="hour"
       >
-        abc
+        <p>{h["11:30"] && h["11:30"].title}</p>
+        <p>{h["11:30"] && h["11:30"].start + " - " + h["12:30"].end}</p>
       </div>
       <div
         style={
           h["12:30"] != null
-            ? { backgroundColor: "blue" }
+            ? { backgroundColor: "#b4faa7" }
             : { backgroundColor: "white" }
         }
         className="hour"
       >
-        abc
+        <p>{h["12:30"] && h["12:30"].title}</p>
+        <p>{h["12:30"] && h["12:30"].start + " - " + h["12:30"].end}</p>
       </div>
       <div
         style={
           h["01:30"] != null
-            ? { backgroundColor: "blue" }
+            ? { backgroundColor: "#a4bef5" }
             : { backgroundColor: "white" }
         }
         className="hour"
       >
-        abc
+        <p>{h["01:30"] && h["01:30"].title}</p>
+        <p>{h["01:30"] && h["01:30"].start + " - " + h["01:30"].end}</p>
       </div>
     </div>
   );
