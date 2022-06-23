@@ -1,5 +1,10 @@
 .week {
   display: flex;
+  margin-top: 0px;
+}
+
+.head {
+  border-bottom: 2px solid #e5e7eb;
 }
 
 .timing {

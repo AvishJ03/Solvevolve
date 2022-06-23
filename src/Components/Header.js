@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <div className="flex justify-between align-center mx-10 my-6">
+    <div className="flex justify-between align-center mx-7 my-6 bg-gray-100 p-4 rounded-2xl">
       <h1 className="font-bold text-3xl ">Timeline</h1>
       <div className="flex justify-evenly align-center w-2/5">
         <select id="drop" className="border-2 rounded-xl px-5">
