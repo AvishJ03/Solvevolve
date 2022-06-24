@@ -23,6 +23,7 @@ const Form = ({ schedule, setSchedule }) => {
         alert("Another event already exists!");
       } else {
         setSchedule((old) => [...old, values]);
+        alert("Event added!");
         resetForm();
       }
     }
