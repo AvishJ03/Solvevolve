@@ -49,29 +49,32 @@ export default function Day({ date, schedule }) {
     <div>
       <div
         style={{ backgroundColor: "white" }}
-        className="hour border-2 shadow-lg rounded"
+        className="hour border-2 rounded"
       ></div>
       {arr.map((ele) => {
         let random = Math.floor(Math.random() * colors.length);
         let r = ele < 10 ? `0${ele}:30` : `${ele}:30`;
         return (
-          <div
-            key={ele}
-            style={
-              h[r] != null
-                ? { backgroundColor: colors[random] }
-                : { backgroundColor: "white" }
-            }
-            className="hour border-2 text-left p-3 shadow-lg rounded flex flex-col justify-evenly"
-          >
-            <p className="m-0 font-bold">{h[r] && h[r].title}</p>
-            <p className="m-0 text-sm">
-              {h[r] &&
-                h[r].start +
-                  ` - ` +
-                  h[r].end +
-                  `${h[r].start > 12 ? " PM" : " AM"}`}
-            </p>
+          <div key={ele} className="hour border-2 rounded bg-white">
+            <div
+              style={
+                h[r] != null
+                  ? { backgroundColor: colors[random] }
+                  : { backgroundColor: "none" }
+              }
+              className={`text-left p-3 h-30 rounded-lg ${
+                h[r] != null && "shadow-xl"
+              } flex flex-col justify-evenly`}
+            >
+              <p className="m-0 font-bold">{h[r] && h[r].title}</p>
+              <p className="m-0 text-sm">
+                {h[r] &&
+                  h[r].start +
+                    ` - ` +
+                    h[r].end +
+                    `${h[r].start > "12" ? " PM" : " AM"}`}
+              </p>
+            </div>
           </div>
         );
       })}
