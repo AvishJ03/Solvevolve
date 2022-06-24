@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import "./day.css";
 
 export default function Day({ date, schedule }) {
   var x;
   const arr = [...Array(23).keys()];
+  const colors = ["#D7D7F3", "#FFD6C4", "#C8EBDC"];
   const hours = {
     "09:30": null,
     "10:30": null,
@@ -44,46 +44,36 @@ export default function Day({ date, schedule }) {
           console.log("no");
         }
       });
-  }, [events, h]);
+  }, [events]);
   return (
     <div>
-      <div style={{ backgroundColor: "white" }} className="hour border-2"></div>
+      <div
+        style={{ backgroundColor: "white" }}
+        className="hour border-2 shadow-lg rounded"
+      ></div>
       {arr.map((ele) => {
-        if (ele < 10) {
-          return (
-            <div
-              style={
-                h[`0${ele}:30`] != null
-                  ? { backgroundColor: "#a6f7f1" }
-                  : { backgroundColor: "white" }
-              }
-              className="hour border-2"
-            >
-              <p>{h[`0${ele}:30`] && h[`0${ele}:30`].title}</p>
-              <p>
-                {h[`0${ele}:30`] &&
-                  h[`0${ele}:30`].start + " - " + h[`0${ele}:30`].end}
-              </p>
-            </div>
-          );
-        } else {
-          return (
-            <div
-              style={
-                h[`${ele}:30`] != null
-                  ? { backgroundColor: "#a6f7f1" }
-                  : { backgroundColor: "white" }
-              }
-              className="hour border-2"
-            >
-              <p>{h[`${ele}:30`] && h[`${ele}:30`].title}</p>
-              <p>
-                {h[`${ele}:30`] &&
-                  h[`${ele}:30`].start + " - " + h[`${ele}:30`].end}
-              </p>
-            </div>
-          );
-        }
+        let random = Math.floor(Math.random() * colors.length);
+        let r = ele < 10 ? `0${ele}:30` : `${ele}:30`;
+        return (
+          <div
+            key={ele}
+            style={
+              h[r] != null
+                ? { backgroundColor: colors[random] }
+                : { backgroundColor: "white" }
+            }
+            className="hour border-2 text-left p-3 shadow-lg rounded flex flex-col justify-evenly"
+          >
+            <p className="m-0 font-bold">{h[r] && h[r].title}</p>
+            <p className="m-0 text-sm">
+              {h[r] &&
+                h[r].start +
+                  ` - ` +
+                  h[r].end +
+                  `${h[r].start > 12 ? " PM" : " AM"}`}
+            </p>
+          </div>
+        );
       })}
     </div>
   );

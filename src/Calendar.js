@@ -11,7 +11,7 @@ export default function Calendar() {
       <div>
         <Form schedule={schedule} setSchedule={setSchedule} />
       </div>
-      <div className="w-10/12">
+      <div className="w-10/12 bg-gray-50">
         <Header />
         <Week schedule={schedule} />
       </div>

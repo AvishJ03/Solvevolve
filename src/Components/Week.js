@@ -1,6 +1,5 @@
 import Day from "./Day";
 import Timing from "./Timings";
-import "./week.css";
 
 export default function Week({ schedule }) {
   const arr = [...Array(7).keys()];
@@ -18,7 +17,7 @@ export default function Week({ schedule }) {
   //   schedule[0] && schedule.forEach((each) => {});
   // }, [schedule]);
   return (
-    <div className="week mx-7 rounded-2xl bg-gray-50">
+    <div className="week shadow-2xl flex mt-0 mx-7 rounded-2xl bg-gray-50">
       <div>
         <div
           className="sticky top-0 head bg-gray-50 mt-1"
@@ -28,10 +27,12 @@ export default function Week({ schedule }) {
       </div>
       {arr.map((ele) => {
         return (
-          <div>
+          <div key={ele}>
             <div className="sticky top-0 my-1 head bg-gray-50 py-3">
-              <h3 className="font-bold">{d[ele]}</h3>
-              <h3 className="font-bold">{19 + ele}</h3>
+              <div>
+                <h3 className="font-bold">{d[ele]}</h3>
+                <h3 className="font-bold">{19 + ele}</h3>
+              </div>
             </div>
             <Day date={`2022-06-${19 + ele}`} schedule={schedule} />
           </div>

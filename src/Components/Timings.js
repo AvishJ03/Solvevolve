@@ -5,9 +5,19 @@ export default function Timing() {
       <div className="timing"></div>
       {arr.map((ele) => {
         if (ele < 10) {
-          return <div className="timing">{`0${ele}:30 AM`}</div>;
+          return (
+            <div
+              key={ele}
+              className="timing font-bold text-gray-400"
+            >{`0${ele}:30 AM`}</div>
+          );
         } else {
-          return <div className="timing">{`${ele}:30 AM`}</div>;
+          return (
+            <div
+              key={ele}
+              className="timing font-bold text-gray-400"
+            >{`${ele}:30 AM`}</div>
+          );
         }
       })}
     </div>
